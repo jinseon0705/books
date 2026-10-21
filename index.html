@@ -2,21 +2,15 @@
 <html lang="ko" class="h-full">
 <head>
   <meta charset="UTF-8">
-<!-- This site is hosted on Netlify. Anyone can build and deploy a site
-     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=f048851d-8b47-4850-9035-76781c2d2672
-     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>교과진로 수업네트워크 도서수합 시스템</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
   <!-- SheetJS (xlsx.full.min.js) for Excel handling -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <!-- Google Fonts: Jua & Gowun Dodum -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,50 +25,10 @@
             gowun: ['Gowun Dodum', 'sans-serif'],
           },
           colors: {
-            // Chiikawa Theme Palette
-            chiikawa: {
-              bg: '#FFF5F7',
-              card: '#FFFFFF',
-              primary: '#FF85A1',
-              primaryHover: '#FF6B8B',
-              secondary: '#FFD3E0',
-              accent: '#FF4D6D',
-              border: '#FFC2D1',
-              text: '#4A3E3D'
-            },
-            // Hachiware Theme Palette
-            hachiware: {
-              bg: '#F0F8FF',
-              card: '#FFFFFF',
-              primary: '#4D96FF',
-              primaryHover: '#3B82F6',
-              secondary: '#D0E6FF',
-              accent: '#2563EB',
-              border: '#B3D8FF',
-              text: '#2C3E50'
-            },
-            // Usagi Theme Palette
-            usagi: {
-              bg: '#FFFBEB',
-              card: '#FFFFFF',
-              primary: '#FBBF24',
-              primaryHover: '#F59E0B',
-              secondary: '#FEF3C7',
-              accent: '#D97706',
-              border: '#FDE68A',
-              text: '#453A1F'
-            },
-            // Momonga Theme Palette
-            momonga: {
-              bg: '#F8F5FF',
-              card: '#FFFFFF',
-              primary: '#A855F7',
-              primaryHover: '#9333EA',
-              secondary: '#E9D5FF',
-              accent: '#7E22CE',
-              border: '#DDD6FE',
-              text: '#3C2E4D'
-            }
+            chiikawa: { bg: '#FFF5F7', card: '#FFFFFF', primary: '#FF85A1', primaryHover: '#FF6B8B', secondary: '#FFD3E0', accent: '#FF4D6D', border: '#FFC2D1', text: '#4A3E3D' },
+            hachiware: { bg: '#F0F8FF', card: '#FFFFFF', primary: '#4D96FF', primaryHover: '#3B82F6', secondary: '#D0E6FF', accent: '#2563EB', border: '#B3D8FF', text: '#2C3E50' },
+            usagi: { bg: '#FFFBEB', card: '#FFFFFF', primary: '#FBBF24', primaryHover: '#F59E0B', secondary: '#FEF3C7', accent: '#D97706', border: '#FDE68A', text: '#453A1F' },
+            momonga: { bg: '#F8F5FF', card: '#FFFFFF', primary: '#A855F7', primaryHover: '#9333EA', secondary: '#E9D5FF', accent: '#7E22CE', border: '#DDD6FE', text: '#3C2E4D' }
           }
         }
       }
@@ -82,80 +36,30 @@
   </script>
 
   <style>
-    body {
-      font-family: 'Gowun Dodum', sans-serif;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    .font-jua {
-      font-family: 'Jua', sans-serif;
-    }
-
-    /* Chiikawa Cute Speech Bubble */
-    .speech-bubble {
-      position: relative;
-      background: #ffffff;
-      border-radius: 1.25rem;
-    }
+    body { font-family: 'Gowun Dodum', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
+    .font-jua { font-family: 'Jua', sans-serif; }
+    .speech-bubble { position: relative; background: #ffffff; border-radius: 1.25rem; }
     .speech-bubble::after {
-      content: '';
-      position: absolute;
-      left: 2rem;
-      bottom: -12px;
-      width: 0;
-      height: 0;
-      border-left: 12px solid transparent;
-      border-right: 12px solid transparent;
-      border-top: 12px solid #ffffff;
+      content: ''; position: absolute; left: 2rem; bottom: -12px;
+      width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 12px solid #ffffff;
     }
-
-    /* Bounce Keyframe for Characters */
-    @keyframes gentle-bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-    .animate-bounce-gentle {
-      animation: gentle-bounce 2.5s infinite ease-in-out;
-    }
-
-    @keyframes usagi-shake {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-4deg); }
-      75% { transform: rotate(4deg); }
-    }
-    .animate-usagi {
-      animation: usagi-shake 1.8s infinite ease-in-out;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.05);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.15);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(0, 0, 0, 0.25);
-    }
+    @keyframes gentle-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .animate-bounce-gentle { animation: gentle-bounce 2.5s infinite ease-in-out; }
+    @keyframes usagi-shake { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+    .animate-usagi { animation: usagi-shake 1.8s infinite ease-in-out; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.25); }
   </style>
 </head>
 <body id="app-body" class="bg-usagi-bg text-usagi-text min-h-full pb-12">
 
-  <!-- Header Banner & Theme Switcher -->
+  <!-- Header Banner -->
   <header class="w-full bg-white/80 backdrop-blur-md shadow-sm border-b border-black/5 sticky top-0 z-30">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
-      
-      <!-- Title -->
       <div class="flex items-center space-x-3">
-        <div id="theme-avatar-badge" class="w-10 h-10 rounded-full bg-usagi-secondary text-usagi-accent flex items-center justify-center text-xl shadow-inner font-jua">
-          🐰
-        </div>
+        <div id="theme-avatar-badge" class="w-10 h-10 rounded-full bg-usagi-secondary text-usagi-accent flex items-center justify-center text-xl shadow-inner font-jua">🐰</div>
         <div>
           <h1 class="text-xl sm:text-2xl font-jua text-gray-800 tracking-wide flex items-center gap-2">
             교과진로 수업네트워크 도서수합
@@ -165,103 +69,77 @@
         </div>
       </div>
 
-      <!-- Theme Switcher Buttons -->
+      <!-- Theme Switcher -->
       <div class="flex items-center gap-1.5 bg-gray-100/80 p-1.5 rounded-2xl border border-gray-200 text-xs font-jua">
         <span class="text-gray-500 hidden sm:inline px-1">테마:</span>
-        <button onclick="setTheme('chiikawa')" id="btn-theme-chiikawa" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:bg-white">
-          <span>💖</span> <span class="hidden md:inline">치이카와</span>
-        </button>
-        <button onclick="setTheme('hachiware')" id="btn-theme-hachiware" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:bg-white">
-          <span>💙</span> <span class="hidden md:inline">하치와레</span>
-        </button>
-        <button onclick="setTheme('usagi')" id="btn-theme-usagi" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:bg-white shadow-sm font-bold">
-          <span>💛</span> <span class="hidden md:inline">우사기</span>
-        </button>
-        <button onclick="setTheme('momonga')" id="btn-theme-momonga" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:bg-white">
-          <span>💜</span> <span class="hidden md:inline">모몽가</span>
-        </button>
+        <button onclick="setTheme('chiikawa')" id="btn-theme-chiikawa" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:bg-white"><span>💖</span> <span class="hidden md:inline">치이카와</span></button>
+        <button onclick="setTheme('hachiware')" id="btn-theme-hachiware" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:bg-white"><span>💙</span> <span class="hidden md:inline">하치와레</span></button>
+        <button onclick="setTheme('usagi')" id="btn-theme-usagi" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:bg-white shadow-sm font-bold"><span>💛</span> <span class="hidden md:inline">우사기</span></button>
+        <button onclick="setTheme('momonga')" id="btn-theme-momonga" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:bg-white"><span>💜</span> <span class="hidden md:inline">모몽가</span></button>
       </div>
-
     </div>
   </header>
 
   <!-- Main Container -->
   <main class="max-w-6xl mx-auto px-4 pt-6 pb-12">
 
-    <!-- Notice & Cute Speech Bubble Area -->
+    <!-- Notice Card -->
     <div class="mb-8 bg-white/70 backdrop-blur rounded-3xl p-5 border border-black/5 shadow-sm">
       <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
-        
-        <!-- Character Avatar / Mascot -->
         <div class="flex-shrink-0 flex items-center gap-3">
-          <div id="mascot-img-box" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-amber-100 border-2 border-amber-300 flex items-center justify-center text-4xl sm:text-5xl shadow-sm animate-usagi select-none">
-            🐰
-          </div>
+          <div id="mascot-img-box" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-amber-100 border-2 border-amber-300 flex items-center justify-center text-4xl sm:text-5xl shadow-sm animate-usagi select-none">🐰</div>
           <div class="md:hidden">
             <span id="mascot-name" class="font-jua text-lg text-amber-700">우사기 (Usagi)</span>
             <p class="text-xs text-gray-500">수업네트워크 도서 수합 도우미</p>
           </div>
         </div>
-
-        <!-- Speech Bubble Text Container -->
         <div class="flex-1 w-full">
           <div class="hidden md:block mb-1">
-            <span id="mascot-name-lg" class="font-jua text-sm px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
-              우사기의 안내 말풍선
-            </span>
+            <span id="mascot-name-lg" class="font-jua text-sm px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">우사기의 안내 말풍선</span>
           </div>
-
-          <!-- Mandatory Exact Speech Bubble Text -->
           <div id="speech-bubble-card" class="speech-bubble p-4 sm:p-5 border-2 border-amber-200 shadow-md text-gray-800 font-jua text-base sm:text-lg leading-relaxed text-balance">
             <i class="fa-solid fa-quote-left text-amber-400 mr-2 text-xl"></i>
             선생님 희망하시는 도서명과 단가를 입력해 주시면 총액이 알아서 계산돼요!(우라!) 한 권씩만 최대 3만원이하로 적어주세요.
             <i class="fa-solid fa-quote-right text-amber-400 ml-2 text-xl"></i>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- Main Navigation Tabs -->
+    <!-- Navigation Tabs -->
     <div class="flex border-b border-gray-200 mb-6 gap-2">
       <button onclick="switchTab('input')" id="tab-btn-input" class="py-3 px-6 font-jua text-base sm:text-lg rounded-t-2xl transition-all border-b-2 border-amber-500 bg-white text-amber-600 font-bold shadow-sm flex items-center gap-2">
         <i class="fa-solid fa-pen-to-square"></i> 도서 신청 작성
       </button>
       <button onclick="switchTab('summary')" id="tab-btn-summary" class="py-3 px-6 font-jua text-base sm:text-lg rounded-t-2xl transition-all border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:bg-white/50 flex items-center gap-2">
-        <i class="fa-solid fa-list-check"></i> 전체 수합 현황 (결과 확인)
+        <i class="fa-solid fa-list-check"></i> 전체 수합 현황 (실시간 반영)
         <span id="summary-count-badge" class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-0.5 rounded-full ml-1">0건</span>
       </button>
     </div>
 
-    <!-- TAB 1: BOOK INPUT FORM -->
+    <!-- TAB 1: INPUT FORM -->
     <section id="tab-content-input" class="space-y-6">
-      
-      <!-- Teacher Info Card -->
       <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
         <h2 class="text-lg font-jua mb-4 text-gray-800 flex items-center gap-2">
           <i class="fa-solid fa-user-gear text-amber-500"></i> 신청 교사 정보
         </h2>
-        
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label class="block text-xs font-bold text-gray-600 mb-1">교사명 <span class="text-red-500">*</span></label>
-            <input type="text" id="teacher-name" placeholder="예: 홍길동" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent text-sm transition-all" value="김선생">
+            <input type="text" id="teacher-name" placeholder="예: 홍길동" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
           </div>
           <div>
             <label class="block text-xs font-bold text-gray-600 mb-1">교과 / 수업네트워크명 <span class="text-red-500">*</span></label>
-            <input type="text" id="subject-name" placeholder="예: 국어과 / 미래융합 네트워크" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent text-sm transition-all" value="국어과 수업네트워크">
+            <input type="text" id="subject-name" placeholder="예: 국어과 / 미래융합 네트워크" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
           </div>
           <div>
             <label class="block text-xs font-bold text-gray-600 mb-1">연락처 / 비고</label>
-            <input type="text" id="teacher-contact" placeholder="예: 010-0000-0000 또는 내선번호" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent text-sm transition-all">
+            <input type="text" id="teacher-contact" placeholder="예: 010-0000-0000 또는 내선번호" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
           </div>
         </div>
       </div>
 
-      <!-- Book List Table Container -->
       <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        
-        <!-- Table Header Toolbar -->
         <div class="p-4 bg-gray-50/80 border-b border-gray-100 flex flex-wrap justify-between items-center gap-3">
           <div class="flex items-center gap-2">
             <h2 class="text-lg font-jua text-gray-800 flex items-center gap-2">
@@ -269,7 +147,6 @@
             </h2>
             <span class="text-xs text-gray-500 hidden sm:inline">(기본 수량 1권, 권당 3만원 이하 권장)</span>
           </div>
-
           <div class="flex items-center gap-2">
             <button onclick="addBookRow()" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-jua text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center gap-1.5 active:scale-95">
               <i class="fa-solid fa-plus"></i> 도서 추가
@@ -280,7 +157,6 @@
           </div>
         </div>
 
-        <!-- Table View for Medium+ Screens -->
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse min-w-[768px]">
             <thead>
@@ -295,62 +171,44 @@
                 <th class="py-3 px-3 text-center w-14">삭제</th>
               </tr>
             </thead>
-            <tbody id="book-table-body" class="divide-y divide-gray-100 text-sm">
-              <!-- Dynamic Rows inserted here -->
-            </tbody>
+            <tbody id="book-table-body" class="divide-y divide-gray-100 text-sm"></tbody>
           </table>
         </div>
 
-        <!-- Table Summary Footer -->
         <div class="p-4 bg-amber-50/60 border-t border-amber-100 flex flex-wrap justify-between items-center gap-4">
           <div class="flex items-center gap-4">
-            <span class="text-xs sm:text-sm font-bold text-gray-600">
-              총 신청 항목: <span id="total-items-count" class="text-amber-600 font-jua text-base">0</span>건
-            </span>
-            <span class="text-xs sm:text-sm font-bold text-gray-600">
-              총 수량: <span id="total-quantity-count" class="text-amber-600 font-jua text-base">0</span>권
-            </span>
+            <span class="text-xs sm:text-sm font-bold text-gray-600">총 신청 항목: <span id="total-items-count" class="text-amber-600 font-jua text-base">0</span>건</span>
+            <span class="text-xs sm:text-sm font-bold text-gray-600">총 수량: <span id="total-quantity-count" class="text-amber-600 font-jua text-base">0</span>권</span>
           </div>
-
           <div class="flex items-center gap-2">
             <span class="text-sm font-jua text-gray-700">총 합계 금액:</span>
             <span id="grand-total-amount" class="text-xl sm:text-2xl font-jua text-amber-600 tracking-tight">0원</span>
           </div>
         </div>
-
       </div>
 
-      <!-- Action Buttons -->
       <div class="flex flex-wrap justify-end items-center gap-3 pt-2">
         <button onclick="downloadExcelSingle()" class="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-jua text-sm sm:text-base rounded-2xl shadow-md transition-all flex items-center gap-2 active:scale-95">
           <i class="fa-solid fa-file-excel text-lg"></i> 내 신청 서식 엑셀 다운로드 (.xlsx)
         </button>
-
         <button onclick="submitBookList()" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-jua text-sm sm:text-base rounded-2xl shadow-md transition-all flex items-center gap-2 active:scale-95">
           <i class="fa-solid fa-paper-plane text-lg"></i> 수합 목록 제출하기
         </button>
       </div>
-
     </section>
 
     <!-- TAB 2: SUMMARY & RESULTS -->
     <section id="tab-content-summary" class="space-y-6 hidden">
-      
-      <!-- Summary Header Bar -->
       <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-wrap justify-between items-center gap-4">
         <div>
           <h2 class="text-lg font-jua text-gray-800 flex items-center gap-2">
-            <i class="fa-solid fa-clipboard-list text-amber-500"></i> 제출된 도서 수합 현황
+            <i class="fa-solid fa-clipboard-list text-amber-500"></i> 구글 시트 전체 수합 현황
           </h2>
-          <p class="text-xs text-gray-500 mt-0.5">전체 교사가 제출한 도서목록을 확인하고 통합 엑셀로 다운로드할 수 있습니다.</p>
+          <p class="text-xs text-gray-500 mt-0.5">선생님들이 제출한 실시간 데이터를 불러와 확인하고 통합 엑셀로 저장합니다.</p>
         </div>
-
         <div class="flex items-center gap-2 flex-wrap">
-          <button onclick="loadMockData()" class="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-jua text-xs sm:text-sm rounded-xl transition-all flex items-center gap-1">
-            <i class="fa-solid fa-vial"></i> 샘플 데이터 생성
-          </button>
-          <button onclick="clearAllSubmissions()" class="px-3.5 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 font-jua text-xs sm:text-sm rounded-xl transition-all flex items-center gap-1">
-            <i class="fa-solid fa-trash-can"></i> 전체 비우기
+          <button onclick="fetchGlobalSubmissions()" class="px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 font-jua text-xs sm:text-sm rounded-xl transition-all flex items-center gap-1">
+            <i class="fa-solid fa-rotate"></i> 새로고침
           </button>
           <button onclick="downloadExcelMerged()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-jua text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center gap-1.5">
             <i class="fa-solid fa-file-excel"></i> 전체 수합 엑셀 다운로드
@@ -358,26 +216,18 @@
         </div>
       </div>
 
-      <!-- Summary List / Cards Container -->
-      <div id="summary-cards-container" class="space-y-4">
-        <!-- Submissions cards will render dynamically here -->
-      </div>
+      <div id="summary-cards-container" class="space-y-4"></div>
 
-      <!-- Empty State -->
       <div id="summary-empty-state" class="bg-white rounded-2xl p-12 text-center border border-dashed border-gray-300">
         <div class="text-5xl mb-3 opacity-60">📚</div>
-        <h3 class="font-jua text-gray-600 text-lg mb-1">아직 제출된 수합 내역이 없습니다</h3>
-        <p class="text-xs text-gray-400 mb-4">'도서 신청 작성' 탭에서 도서 목록을 작성한 후 [수합 목록 제출하기]를 눌러주세요.</p>
-        <button onclick="loadMockData()" class="px-4 py-2 bg-amber-500 text-white font-jua text-xs rounded-xl shadow-sm hover:bg-amber-600 transition-all">
-          예시 샘플 데이터 불러오기
-        </button>
+        <h3 class="font-jua text-gray-600 text-lg mb-1">제출된 수합 내역을 불러오는 중이거나 아직 없습니다</h3>
+        <p class="text-xs text-gray-400 mb-4">'도서 신청 작성' 탭에서 도서를 제출해 보세요.</p>
       </div>
-
     </section>
 
   </main>
 
-  <!-- Toast Notification Modal/Popup -->
+  <!-- Toast Popup -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 ease-out pointer-events-none">
     <div id="toast-body" class="bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-xl font-jua text-sm flex items-center gap-3">
       <span id="toast-icon">✨</span>
@@ -385,110 +235,33 @@
     </div>
   </div>
 
-  <!-- JavaScript App Logic -->
+  <!-- JavaScript Logic -->
   <script>
-    // System State Variables
+    const GOOGLE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzaxjlFGdZ-cVPpduW-nL5J6C6pU6PANqhDElYn8MDBR4regPsloAeuevPMYgyYOtwg/exec";
+
     let currentTheme = 'usagi';
     let booksData = [];
-    let submissions = [];
+    let globalSheetRawData = []; 
 
-    // Theme Configs & Character Customization
     const themes = {
-      chiikawa: {
-        bg: 'bg-chiikawa-bg',
-        text: 'text-chiikawa-text',
-        primaryBg: 'bg-chiikawa-primary',
-        primaryHover: 'hover:bg-chiikawa-primaryHover',
-        accentText: 'text-chiikawa-accent',
-        border: 'border-chiikawa-border',
-        secondaryBg: 'bg-chiikawa-secondary',
-        emoji: '💖',
-        name: '치이카와 (Chiikawa)',
-        bubbleBorder: 'border-pink-300',
-        quoteIcon: 'text-pink-400',
-        badgeBg: 'bg-pink-100',
-        badgeText: 'text-pink-800',
-        badgeBorder: 'border-pink-200'
-      },
-      hachiware: {
-        bg: 'bg-hachiware-bg',
-        text: 'text-hachiware-text',
-        primaryBg: 'bg-hachiware-primary',
-        primaryHover: 'hover:bg-hachiware-primaryHover',
-        accentText: 'text-hachiware-accent',
-        border: 'border-hachiware-border',
-        secondaryBg: 'bg-hachiware-secondary',
-        emoji: '💙',
-        name: '하치와레 (Hachiware)',
-        bubbleBorder: 'border-blue-300',
-        quoteIcon: 'text-blue-400',
-        badgeBg: 'bg-blue-100',
-        badgeText: 'text-blue-800',
-        badgeBorder: 'border-blue-200'
-      },
-      usagi: {
-        bg: 'bg-usagi-bg',
-        text: 'text-usagi-text',
-        primaryBg: 'bg-usagi-primary',
-        primaryHover: 'hover:bg-usagi-primaryHover',
-        accentText: 'text-usagi-accent',
-        border: 'border-usagi-border',
-        secondaryBg: 'bg-usagi-secondary',
-        emoji: '🐰',
-        name: '우사기 (Usagi)',
-        bubbleBorder: 'border-amber-300',
-        quoteIcon: 'text-amber-400',
-        badgeBg: 'bg-amber-100',
-        badgeText: 'text-amber-800',
-        badgeBorder: 'border-amber-200'
-      },
-      momonga: {
-        bg: 'bg-momonga-bg',
-        text: 'text-momonga-text',
-        primaryBg: 'bg-momonga-primary',
-        primaryHover: 'hover:bg-momonga-primaryHover',
-        accentText: 'text-momonga-accent',
-        border: 'border-momonga-border',
-        secondaryBg: 'bg-momonga-secondary',
-        emoji: '💜',
-        name: '모몽가 (Momonga)',
-        bubbleBorder: 'border-purple-300',
-        quoteIcon: 'text-purple-400',
-        badgeBg: 'bg-purple-100',
-        badgeText: 'text-purple-800',
-        badgeBorder: 'border-purple-200'
-      }
+      chiikawa: { bg: 'bg-chiikawa-bg', text: 'text-chiikawa-text', emoji: '💖', name: '치이카와 (Chiikawa)', bubbleBorder: 'border-pink-300', badgeBg: 'bg-pink-100', badgeText: 'text-pink-800', badgeBorder: 'border-pink-200' },
+      hachiware: { bg: 'bg-hachiware-bg', text: 'text-hachiware-text', emoji: '💙', name: '하치와레 (Hachiware)', bubbleBorder: 'border-blue-300', badgeBg: 'bg-blue-100', badgeText: 'text-blue-800', badgeBorder: 'border-blue-200' },
+      usagi: { bg: 'bg-usagi-bg', text: 'text-usagi-text', emoji: '🐰', name: '우사기 (Usagi)', bubbleBorder: 'border-amber-300', badgeBg: 'bg-amber-100', badgeText: 'text-amber-800', badgeBorder: 'border-amber-200' },
+      momonga: { bg: 'bg-momonga-bg', text: 'text-momonga-text', emoji: '💜', name: '모몽가 (Momonga)', bubbleBorder: 'border-purple-300', badgeBg: 'bg-purple-100', badgeText: 'text-purple-800', badgeBorder: 'border-purple-200' }
     };
 
-    // On Page Initialization
     window.onload = function() {
-      // Load saved theme or default to Usagi
       const savedTheme = localStorage.getItem('chiikawa_book_theme') || 'usagi';
       setTheme(savedTheme);
-
-      // Load saved submissions from LocalStorage
-      loadSubmissionsFromStorage();
-
-      // Initialize default empty rows
       initDefaultBooks();
-
-      // Render Submissions Count
-      updateSummaryBadge();
     };
 
-    // Theme Switcher Function
     function setTheme(themeName) {
       if (!themes[themeName]) return;
       currentTheme = themeName;
       localStorage.setItem('chiikawa_book_theme', themeName);
-
       const t = themes[themeName];
-      const body = document.getElementById('app-body');
-      
-      // Update body classes
-      body.className = `${t.bg} ${t.text} min-h-full pb-12 transition-all duration-300`;
-
-      // Update mascot image & badge
+      document.getElementById('app-body').className = `${t.bg} ${t.text} min-h-full pb-12 transition-all duration-300`;
       document.getElementById('theme-avatar-badge').innerText = t.emoji;
       document.getElementById('mascot-img-box').innerText = t.emoji;
       document.getElementById('mascot-name').innerText = t.name;
@@ -496,23 +269,16 @@
       const lgBadge = document.getElementById('mascot-name-lg');
       lgBadge.innerText = `${t.name}의 안내 말풍선`;
       lgBadge.className = `font-jua text-sm px-2.5 py-0.5 rounded-full ${t.badgeBg} ${t.badgeText} border ${t.badgeBorder}`;
+      document.getElementById('speech-bubble-card').className = `speech-bubble p-4 sm:p-5 border-2 ${t.bubbleBorder} shadow-md text-gray-800 font-jua text-base sm:text-lg leading-relaxed text-balance`;
 
-      // Speech bubble card border
-      const speechCard = document.getElementById('speech-bubble-card');
-      speechCard.className = `speech-bubble p-4 sm:p-5 border-2 ${t.bubbleBorder} shadow-md text-gray-800 font-jua text-base sm:text-lg leading-relaxed text-balance`;
-
-      // Active state button highlighting
       ['chiikawa', 'hachiware', 'usagi', 'momonga'].forEach(key => {
         const btn = document.getElementById(`btn-theme-${key}`);
-        if (key === themeName) {
-          btn.className = "px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white shadow-sm font-bold text-gray-800";
-        } else {
-          btn.className = "px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 text-gray-500 hover:bg-white/60";
-        }
+        btn.className = (key === themeName) 
+          ? "px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white shadow-sm font-bold text-gray-800"
+          : "px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 text-gray-500 hover:bg-white/60";
       });
     }
 
-    // Default Rows Initializer
     function initDefaultBooks() {
       booksData = [
         { id: Date.now(), title: "수업을 살리는 교사 독서법", quantity: 1, price: 18000, note: "수업 연계 참고자료", url: "https://search.shopping.naver.com" },
@@ -521,21 +287,12 @@
       renderBookRows();
     }
 
-    // Add New Row
     function addBookRow() {
-      booksData.push({
-        id: Date.now() + Math.random(),
-        title: "",
-        quantity: 1, // Mandatory default = 1
-        price: 0,
-        note: "",
-        url: ""
-      });
+      booksData.push({ id: Date.now() + Math.random(), title: "", quantity: 1, price: 0, note: "", url: "" });
       renderBookRows();
       showToast("새 도서 항목이 추가되었습니다.", "➕");
     }
 
-    // Remove Row
     function removeBookRow(index) {
       if (booksData.length <= 1) {
         showToast("최소 1개의 도서 항목은 유지되어야 합니다.", "⚠️");
@@ -546,7 +303,6 @@
       showToast("항목이 삭제되었습니다.", "🗑️");
     }
 
-    // Reset Form
     function resetCurrentForm() {
       if (confirm("작성 중인 내용을 초기화하시겠습니까?")) {
         document.getElementById('teacher-name').value = '';
@@ -557,7 +313,6 @@
       }
     }
 
-    // Update Field Values Real-time
     function updateBookField(index, field, value) {
       if (field === 'quantity') {
         let val = parseInt(value, 10);
@@ -568,102 +323,49 @@
       } else {
         booksData[index][field] = value;
       }
-
       calculateTotals();
     }
 
-    // Render Table Rows
     function renderBookRows() {
       const tbody = document.getElementById('book-table-body');
       tbody.innerHTML = '';
 
       booksData.forEach((book, idx) => {
         const subtotal = (book.quantity || 0) * (book.price || 0);
-        
-        // Validation checks for rules: Quantity = 1, Max Price = 30,000 KRW
         const isHighPrice = book.price > 30000;
         const isMultiQty = book.quantity > 1;
 
         const row = document.createElement('tr');
         row.className = "hover:bg-amber-50/30 transition-colors";
-
         row.innerHTML = `
           <td class="py-3 px-3 text-center font-bold text-gray-400">${idx + 1}</td>
-          
-          <!-- Book Title -->
           <td class="py-2 px-3">
-            <input type="text" 
-                   value="${escapeHtml(book.title)}" 
-                   oninput="updateBookField(${idx}, 'title', this.value)" 
-                   placeholder="도서명을 입력해 주세요" 
-                   class="w-full px-3 py-1.5 rounded-lg border border-gray-200 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-sm">
+            <input type="text" value="${escapeHtml(book.title)}" oninput="updateBookField(${idx}, 'title', this.value)" placeholder="도서명을 입력해 주세요" class="w-full px-3 py-1.5 rounded-lg border border-gray-200 focus:border-amber-400 text-sm">
           </td>
-
-          <!-- Quantity (Default 1) -->
           <td class="py-2 px-3 text-center">
-            <div class="flex flex-col items-center">
-              <input type="number" 
-                     min="1" 
-                     value="${book.quantity}" 
-                     oninput="updateBookField(${idx}, 'quantity', this.value)" 
-                     class="w-16 px-2 py-1.5 text-center rounded-lg border ${isMultiQty ? 'border-amber-500 bg-amber-50 font-bold' : 'border-gray-200'} focus:border-amber-400 text-sm">
-              ${isMultiQty ? '<span class="text-[10px] text-amber-600 font-bold mt-0.5">1권 권장</span>' : ''}
-            </div>
+            <input type="number" min="1" value="${book.quantity}" oninput="updateBookField(${idx}, 'quantity', this.value)" class="w-16 px-2 py-1.5 text-center rounded-lg border ${isMultiQty ? 'border-amber-500 bg-amber-50 font-bold' : 'border-gray-200'} text-sm">
           </td>
-
-          <!-- Unit Price (단가) -->
           <td class="py-2 px-3 text-right">
-            <div class="flex flex-col items-end">
-              <input type="text" 
-                     value="${book.price ? book.price.toLocaleString('ko-KR') : ''}" 
-                     oninput="formatPriceInput(this, ${idx})" 
-                     placeholder="0" 
-                     class="w-28 px-3 py-1.5 text-right rounded-lg border ${isHighPrice ? 'border-rose-400 bg-rose-50 font-bold text-rose-700' : 'border-gray-200'} focus:border-amber-400 text-sm">
-              ${isHighPrice ? '<span class="text-[10px] text-rose-500 font-bold mt-0.5"><i class="fa-solid fa-triangle-exclamation"></i> 3만원 초과</span>' : ''}
-            </div>
+            <input type="text" value="${book.price ? book.price.toLocaleString('ko-KR') : ''}" oninput="formatPriceInput(this, ${idx})" placeholder="0" class="w-28 px-3 py-1.5 text-right rounded-lg border ${isHighPrice ? 'border-rose-400 bg-rose-50 font-bold text-rose-700' : 'border-gray-200'} text-sm">
           </td>
-
-          <!-- Subtotal (소계) -->
-          <td class="py-2 px-3 text-right font-jua text-gray-700 text-base">
-            ${subtotal.toLocaleString('ko-KR')}원
-          </td>
-
-          <!-- Notes -->
+          <td class="py-2 px-3 text-right font-jua text-gray-700 text-base">${subtotal.toLocaleString('ko-KR')}원</td>
           <td class="py-2 px-3">
-            <input type="text" 
-                   value="${escapeHtml(book.note)}" 
-                   oninput="updateBookField(${idx}, 'note', this.value)" 
-                   placeholder="특이사항/비고" 
-                   class="w-full px-2.5 py-1.5 rounded-lg border border-gray-200 focus:border-amber-400 text-xs">
+            <input type="text" value="${escapeHtml(book.note)}" oninput="updateBookField(${idx}, 'note', this.value)" placeholder="비고" class="w-full px-2.5 py-1.5 rounded-lg border border-gray-200 text-xs">
           </td>
-
-          <!-- URL -->
           <td class="py-2 px-3">
-            <div class="flex items-center gap-1">
-              <input type="url" 
-                     value="${escapeHtml(book.url)}" 
-                     oninput="updateBookField(${idx}, 'url', this.value)" 
-                     placeholder="https://..." 
-                     class="w-full px-2.5 py-1.5 rounded-lg border border-gray-200 focus:border-amber-400 text-xs truncate">
-              ${book.url ? `<a href="${escapeHtml(book.url)}" target="_blank" class="text-xs text-blue-500 hover:text-blue-700 px-1.5 py-1 rounded bg-blue-50" title="링크 열기"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
-            </div>
+            <input type="url" value="${escapeHtml(book.url)}" oninput="updateBookField(${idx}, 'url', this.value)" placeholder="https://..." class="w-full px-2.5 py-1.5 rounded-lg border border-gray-200 text-xs truncate">
           </td>
-
-          <!-- Action Delete -->
           <td class="py-2 px-3 text-center">
             <button onclick="removeBookRow(${idx})" class="w-8 h-8 rounded-lg bg-gray-100 hover:bg-rose-100 text-gray-400 hover:text-rose-600 transition-colors flex items-center justify-center">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </td>
         `;
-
         tbody.appendChild(row);
       });
-
       calculateTotals();
     }
 
-    // Helper: Price input comma format
     function formatPriceInput(inputElem, idx) {
       let rawVal = inputElem.value.replace(/[^0-9]/g, '');
       let num = rawVal ? parseInt(rawVal, 10) : 0;
@@ -671,7 +373,6 @@
       updateBookField(idx, 'price', num);
     }
 
-    // Calculate Grand Totals
     function calculateTotals() {
       let totalItems = booksData.length;
       let totalQty = 0;
@@ -689,88 +390,7 @@
       document.getElementById('grand-total-amount').innerText = grandTotal.toLocaleString('ko-KR') + '원';
     }
 
-    // DOWNLOAD SINGLE TEACHER EXCEL (.xlsx)
-    function downloadExcelSingle() {
-      const teacherName = document.getElementById('teacher-name').value.trim() || '미기입';
-      const subjectName = document.getElementById('subject-name').value.trim() || '미기입';
-      const contact = document.getElementById('teacher-contact').value.trim() || '';
-
-      if (booksData.length === 0) {
-        showToast("다운로드할 도서 항목이 없습니다.", "⚠️");
-        return;
-      }
-
-      // Check for unfilled book titles
-      const emptyTitles = booksData.filter(b => !b.title.trim());
-      if (emptyTitles.length > 0) {
-        if (!confirm("도서명이 입력되지 않은 항목이 있습니다. 그대로 엑셀을 내려받으시겠습니까?")) {
-          return;
-        }
-      }
-
-      // Excel Sheet Array Structure
-      const excelRows = [];
-      
-      // Info Headers
-      excelRows.push(["교과진로 수업네트워크 도서 수합 신청서"]);
-      excelRows.push([`교사명: ${teacherName}`, `교과/네트워크명: ${subjectName}`, `연락처/비고: ${contact}`]);
-      excelRows.push([]); // Empty row
-      
-      // Column Headers
-      excelRows.push(["연번", "도서명", "수량", "단가(원)", "소계(원)", "비고", "구매/정보 URL"]);
-
-      // Rows
-      let totalAmt = 0;
-      let totalQty = 0;
-
-      booksData.forEach((item, index) => {
-        const qty = parseInt(item.quantity, 10) || 0;
-        const price = parseInt(item.price, 10) || 0;
-        const subtotal = qty * price;
-        totalQty += qty;
-        totalAmt += subtotal;
-
-        excelRows.push([
-          index + 1,
-          item.title || "",
-          qty,
-          price,
-          subtotal,
-          item.note || "",
-          item.url || ""
-        ]);
-      });
-
-      // Total Row
-      excelRows.push(["합계", "", totalQty, "", totalAmt, "", ""]);
-
-      // Generate Workbook
-      const worksheet = XLSX.utils.aoa_to_sheet(excelRows);
-
-      // Column Widths
-      worksheet['!cols'] = [
-        { wch: 6 },  // 연번
-        { wch: 35 }, // 도서명
-        { wch: 8 },  // 수량
-        { wch: 14 }, // 단가
-        { wch: 14 }, // 소계
-        { wch: 25 }, // 비고
-        { wch: 40 }  // URL
-      ];
-
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "도서신청서");
-
-      const fileName = `도서수합신청_${teacherName}_${subjectName}.xlsx`;
-      XLSX.writeFile(workbook, fileName);
-
-      showToast("개인 신청 서식 엑셀 파일이 다운로드되었습니다!", "📊");
-    }
-
-// 👇 여기에 본인의 구글 웹 앱 URL을 추가하세요.
-    const GOOGLE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxcPuPKzEAmlr1EtpcE4Axwy4uquDlnH1CjE1D-0vyA8hQQOJvShUFPQaOgk8fyDn7W/exec";
-
-  // SUBMIT BOOK LIST (구글 스프레드시트 및 LocalStorage 저장)
+    // 제출하기 (구글 시트 전송)
     function submitBookList() {
       const teacherName = document.getElementById('teacher-name').value.trim();
       const subjectName = document.getElementById('subject-name').value.trim();
@@ -780,146 +400,122 @@
         showToast("교사명과 교과/네트워크명을 모두 입력해 주세요.", "⚠️");
         return;
       }
-
       if (booksData.length === 0) {
         showToast("제출할 도서 목록이 없습니다.", "⚠️");
         return;
       }
 
-      // Check rule warnings
-      let warnings = [];
-      booksData.forEach((b, i) => {
-        if (b.price > 30000) warnings.push(`${i+1}번 도서 [${b.title || '제목없음'}] : 3만원 초과`);
-        if (b.quantity > 1) warnings.push(`${i+1}번 도서 [${b.title || '제목없음'}] : 수량 1권 초과`);
-      });
-
-      if (warnings.length > 0) {
-        const msg = "다음 안내 사항을 확인해 주세요:\n- " + warnings.join("\n- ") + "\n\n이대로 수합 내역을 제출하시겠습니까?";
-        if (!confirm(msg)) return;
-      }
-
-      // 1. 브라우저 로컬 저장용
-      const submission = {
-        id: 'sub_' + Date.now(),
-        submittedAt: new Date().toLocaleString('ko-KR'),
-        teacherName,
-        subjectName,
-        contact,
-        books: JSON.parse(JSON.stringify(booksData))
-      };
-
-      submissions.push(submission);
-      saveSubmissionsToStorage();
-      updateSummaryBadge();
-
-      // 2. 구글 앱스 스크립트로 보낼 데이터 (payload)
       const payload = {
         teacherName: teacherName,
         subjectName: subjectName,
         contact: contact,
-        books: booksData // 앱스 스크립트의 JSON.parse(data.books)와 짝을 맞추기 위함
+        books: booksData
       };
 
-      // 3. 구글 웹 앱 URL로 데이터 전송 (CORS 에러 방지를 위해 text/plain 사용)
       fetch(GOOGLE_WEB_APP_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
-        },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       })
       .then(response => response.json())
       .then(data => {
-        console.log("구글 시트 전송 성공:", data);
         showToast("성공적으로 수합 내역이 제출되었습니다!", "🎉");
+        // 입력 서식 초기화
+        initDefaultBooks();
+        setTimeout(() => { switchTab('summary'); }, 600);
       })
       .catch(error => {
-        console.error("구글 시트 전송 에러:", error);
-        showToast("데이터 전송 중 오류가 발생했습니다.", "⚠️");
+        console.error("전송 에러:", error);
+        showToast("구글 시트 저장 중 오류가 발생했습니다.", "⚠️");
       });
+    }
+
+    // 실시간 구글 시트 데이터 불러오기
+    function fetchGlobalSubmissions() {
+      const container = document.getElementById('summary-cards-container');
+      const emptyState = document.getElementById('summary-empty-state');
       
-      // Automatically switch to summary tab to view result
-      setTimeout(() => {
-        switchTab('summary');
-      }, 600);
+      container.innerHTML = '<div class="text-center py-8 text-gray-500 font-jua">구글 시트에서 최신 데이터를 불러오는 중... ⏳</div>';
+      emptyState.classList.add('hidden');
+
+      fetch(GOOGLE_WEB_APP_URL)
+        .then(res => res.json())
+        .then(data => {
+          globalSheetRawData = data;
+          renderSummaryFromSheet(data);
+        })
+        .catch(err => {
+          console.error("데이터 조회 실패:", err);
+          container.innerHTML = '<div class="text-center py-8 text-rose-500 font-jua">데이터를 불러오지 못했습니다. 앱스 스크립트 배포 상태를 확인해 주세요.</div>';
+        });
     }
 
-    // SUBMISSIONS / SUMMARY TAB LOGIC
-    function loadSubmissionsFromStorage() {
-      const saved = localStorage.getItem('chiikawa_book_submissions');
-      if (saved) {
-        try {
-          submissions = JSON.parse(saved);
-        } catch (e) {
-          submissions = [];
-        }
-      }
-      renderSummaryCards();
-    }
-
-    function saveSubmissionsToStorage() {
-      localStorage.setItem('chiikawa_book_submissions', JSON.stringify(submissions));
-      renderSummaryCards();
-    }
-
-    function updateSummaryBadge() {
-      const badge = document.getElementById('summary-count-badge');
-      badge.innerText = `${submissions.length}건`;
-    }
-
-    function renderSummaryCards() {
+    function renderSummaryFromSheet(data) {
       const container = document.getElementById('summary-cards-container');
       const emptyState = document.getElementById('summary-empty-state');
 
-      if (submissions.length === 0) {
+      if (!data || data.length === 0) {
         container.innerHTML = '';
         emptyState.classList.remove('hidden');
+        document.getElementById('summary-count-badge').innerText = '0건';
         return;
       }
 
-      emptyState.classList.add('hidden');
+      // 교사명 + 네트워크명 기준으로 데이터 그룹화
+      const grouped = {};
+      data.forEach(item => {
+        const key = `${item.teacherName}_${item.subjectName}`;
+        if (!grouped[key]) {
+          grouped[key] = {
+            teacherName: item.teacherName,
+            subjectName: item.subjectName,
+            contact: item.contact,
+            timestamp: item.timestamp,
+            books: []
+          };
+        }
+        grouped[key].books.push(item);
+      });
+
+      const groupKeys = Object.keys(grouped);
+      document.getElementById('summary-count-badge').innerText = `${groupKeys.length}명 제출`;
+
       container.innerHTML = '';
 
-      submissions.forEach((sub, subIdx) => {
-        let subTotalQty = 0;
-        let subTotalAmt = 0;
+      groupKeys.forEach(key => {
+        const group = grouped[key];
+        let groupQty = 0;
+        let groupAmt = 0;
 
-        sub.books.forEach(b => {
-          let q = parseInt(b.quantity, 10) || 0;
-          let p = parseInt(b.price, 10) || 0;
-          subTotalQty += q;
-          subTotalAmt += (q * p);
+        group.books.forEach(b => {
+          const q = parseInt(b.quantity, 10) || 0;
+          const p = parseInt(b.price, 10) || 0;
+          groupQty += q;
+          groupAmt += (q * p);
         });
 
         const card = document.createElement('div');
-        card.className = "bg-white rounded-2xl p-5 shadow-sm border border-gray-100 transition-all hover:shadow-md";
-
+        card.className = "bg-white rounded-2xl p-5 shadow-sm border border-gray-100";
         card.innerHTML = `
           <div class="flex flex-wrap justify-between items-start gap-2 border-b border-gray-100 pb-3 mb-3">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 font-jua flex items-center justify-center text-lg">
-                ${sub.teacherName.substring(0, 1) || '교'}
+                ${escapeHtml(group.teacherName).substring(0, 1)}
               </div>
               <div>
                 <h3 class="font-jua text-base text-gray-800">
-                  ${escapeHtml(sub.teacherName)} 선생님 
-                  <span class="text-xs font-normal text-gray-500">(${escapeHtml(sub.subjectName)})</span>
+                  ${escapeHtml(group.teacherName)} 선생님 
+                  <span class="text-xs font-normal text-gray-500">(${escapeHtml(group.subjectName)})</span>
                 </h3>
-                <p class="text-xs text-gray-400">제출일시: ${sub.submittedAt} ${sub.contact ? '| ' + escapeHtml(sub.contact) : ''}</p>
+                <p class="text-xs text-gray-400">제출시각: ${escapeHtml(group.timestamp)} ${group.contact ? '| ' + escapeHtml(group.contact) : ''}</p>
               </div>
             </div>
 
-            <div class="flex items-center gap-2">
-              <span class="text-sm font-jua text-amber-600 bg-amber-50 px-3 py-1 rounded-xl">
-                ${sub.books.length}종 (${subTotalQty}권) / ${subTotalAmt.toLocaleString('ko-KR')}원
-              </span>
-              <button onclick="deleteSubmission(${subIdx})" class="text-xs text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-2.5 py-1.5 rounded-lg transition-colors">
-                <i class="fa-solid fa-trash"></i> 삭제
-              </button>
-            </div>
+            <span class="text-sm font-jua text-amber-600 bg-amber-50 px-3 py-1 rounded-xl">
+              총 ${group.books.length}종 (${groupQty}권) / ${groupAmt.toLocaleString('ko-KR')}원
+            </span>
           </div>
 
-          <!-- Book Details Table -->
           <div class="overflow-x-auto">
             <table class="w-full text-xs text-left border-collapse">
               <thead>
@@ -934,7 +530,7 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-50 text-gray-700">
-                ${sub.books.map((b, bIdx) => {
+                ${group.books.map((b, bIdx) => {
                   const q = parseInt(b.quantity, 10) || 0;
                   const p = parseInt(b.price, 10) || 0;
                   return `
@@ -946,7 +542,7 @@
                       <td class="py-1.5 px-2 text-right font-bold text-gray-800">${(q * p).toLocaleString('ko-KR')}원</td>
                       <td class="py-1.5 px-2 text-gray-500">${escapeHtml(b.note || '-')}</td>
                       <td class="py-1.5 px-2">
-                        ${b.url ? `<a href="${escapeHtml(b.url)}" target="_blank" class="text-blue-500 hover:underline inline-flex items-center gap-1"><i class="fa-solid fa-link text-[10px]"></i> 링크</a>` : '-'}
+                        ${b.url ? `<a href="${escapeHtml(b.url)}" target="_blank" class="text-blue-500 hover:underline"><i class="fa-solid fa-link"></i> 링크</a>` : '-'}
                       </td>
                     </tr>
                   `;
@@ -955,189 +551,138 @@
             </table>
           </div>
         `;
-
         container.appendChild(card);
       });
     }
 
-    // Delete Single Submission
-    function deleteSubmission(index) {
-      if (confirm("이 수합 내역을 삭제하시겠습니까?")) {
-        submissions.splice(index, 1);
-        saveSubmissionsToStorage();
-        updateSummaryBadge();
-        showToast("제출 내역이 삭제되었습니다.", "🗑️");
-      }
-    }
-
-    // Clear All Submissions
-    function clearAllSubmissions() {
-      if (submissions.length === 0) return;
-      if (confirm("모든 교사의 수합 제출 목록을 완전히 삭제하시겠습니까?")) {
-        submissions = [];
-        saveSubmissionsToStorage();
-        updateSummaryBadge();
-        showToast("전체 수합 내역이 비워졌습니다.", "🧹");
-      }
-    }
-
-    // DOWNLOAD ALL MERGED SUBMISSIONS TO EXCEL
-    function downloadExcelMerged() {
-      if (submissions.length === 0) {
-        showToast("다운로드할 수합 내역이 없습니다.", "⚠️");
-        return;
-      }
-
-      const excelRows = [];
-
-      // Header
-      excelRows.push(["2026학년도 교과진로 수업네트워크 전체 도서 수합 목록"]);
-      excelRows.push([`총 제출 인원: ${submissions.length}명`, `생성일시: ${new Date().toLocaleString('ko-KR')}`]);
-      excelRows.push([]); // Empty spacing
-
-      // Table Header (Required Column Order: 도서명, 수량, 단가, 비고, URL + 교사/네트워크 정보 추가)
-      excelRows.push(["연번", "신청 교사명", "교과/네트워크명", "도서명", "수량", "단가(원)", "소계(원)", "비고", "구매/정보 URL"]);
-
-      let grandTotalAmount = 0;
-      let grandTotalQty = 0;
-      let globalIndex = 1;
-
-      submissions.forEach(sub => {
-        sub.books.forEach(b => {
-          const q = parseInt(b.quantity, 10) || 0;
-          const p = parseInt(b.price, 10) || 0;
-          const subtotal = q * p;
-          grandTotalQty += q;
-          grandTotalAmount += subtotal;
-
-          excelRows.push([
-            globalIndex++,
-            sub.teacherName,
-            sub.subjectName,
-            b.title || "",
-            q,
-            p,
-            subtotal,
-            b.note || "",
-            b.url || ""
-          ]);
-        });
-      });
-
-      // Total Row
-      excelRows.push(["전체 합계", "", "", "", grandTotalQty, "", grandTotalAmount, "", ""]);
-
-      const worksheet = XLSX.utils.aoa_to_sheet(excelRows);
-
-      // Column Width Auto Adjustment
-      worksheet['!cols'] = [
-        { wch: 6 },  // 연번
-        { wch: 12 }, // 교사명
-        { wch: 22 }, // 교과/네트워크
-        { wch: 35 }, // 도서명
-        { wch: 8 },  // 수량
-        { wch: 14 }, // 단가
-        { wch: 14 }, // 소계
-        { wch: 25 }, // 비고
-        { wch: 40 }  // URL
-      ];
-
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "전체수합목록");
-
-      const fileName = `수업네트워크_전체도서수합_통합.xlsx`;
-      XLSX.writeFile(workbook, fileName);
-
-      showToast("전체 수합 통합 엑셀 파일이 다운로드되었습니다!", "📊");
-    }
-
-    // Load Mock Sample Data
-    function loadMockData() {
-      const mockSubmissions = [
-        {
-          id: 'mock_1',
-          submittedAt: '2026-10-20 14:20:00',
-          teacherName: '박지성',
-          subjectName: '체육 / 미래진로 네트워크',
-          contact: '010-1234-5678',
-          books: [
-            { id: 101, title: '스포츠 사이언스와 데이터 혁명', quantity: 1, price: 25000, note: '수업 교구용', url: 'https://search.shopping.naver.com' },
-            { id: 102, title: '체육 교사를 위한 진로 코칭', quantity: 1, price: 18000, note: '연구용', url: '' }
-          ]
-        },
-        {
-          id: 'mock_2',
-          submittedAt: '2026-10-20 15:05:12',
-          teacherName: '이영희',
-          subjectName: '과학 / 융합수업 연구회',
-          contact: '내선 304',
-          books: [
-            { id: 201, title: '코스모스 (개정판)', quantity: 1, price: 29000, note: '융합 독서 프로젝트', url: 'https://kyobobook.co.kr' },
-            { id: 202, title: '세상을 바꾼 과학 실험 이야기', quantity: 1, price: 16500, note: '학생 탐구 참고', url: '' }
-          ]
-        }
-      ];
-
-      submissions = mockSubmissions;
-      saveSubmissionsToStorage();
-      updateSummaryBadge();
-      showToast("샘플 수합 데이터가 생성되었습니다.", "🧪");
-    }
-
-    // TAB SWITCHING
+    // 탭 전환
     function switchTab(tabName) {
       const inputTab = document.getElementById('tab-content-input');
       const summaryTab = document.getElementById('tab-content-summary');
       const btnInput = document.getElementById('tab-btn-input');
       const btnSummary = document.getElementById('tab-btn-summary');
-
       const themeObj = themes[currentTheme];
 
       if (tabName === 'input') {
         inputTab.classList.remove('hidden');
         summaryTab.classList.add('hidden');
-
         btnInput.className = `py-3 px-6 font-jua text-base sm:text-lg rounded-t-2xl transition-all border-b-2 border-amber-500 bg-white ${themeObj.accentText} font-bold shadow-sm flex items-center gap-2`;
         btnSummary.className = "py-3 px-6 font-jua text-base sm:text-lg rounded-t-2xl transition-all border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:bg-white/50 flex items-center gap-2";
       } else {
         inputTab.classList.add('hidden');
         summaryTab.classList.remove('hidden');
-
         btnSummary.className = `py-3 px-6 font-jua text-base sm:text-lg rounded-t-2xl transition-all border-b-2 border-amber-500 bg-white ${themeObj.accentText} font-bold shadow-sm flex items-center gap-2`;
         btnInput.className = "py-3 px-6 font-jua text-base sm:text-lg rounded-t-2xl transition-all border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:bg-white/50 flex items-center gap-2";
 
-        renderSummaryCards();
+        // 전체 수합 현황 탭 선택 시 구글 시트에서 최신 데이터 자동 불러오기
+        fetchGlobalSubmissions();
       }
     }
 
-    // TOAST NOTIFICATION HELPERS
+    // 엑셀 다운로드 (단일 작성본)
+    function downloadExcelSingle() {
+      const teacherName = document.getElementById('teacher-name').value.trim() || '미기입';
+      const subjectName = document.getElementById('subject-name').value.trim() || '미기입';
+      const contact = document.getElementById('teacher-contact').value.trim() || '';
+
+      if (booksData.length === 0) {
+        showToast("다운로드할 도서 항목이 없습니다.", "⚠️");
+        return;
+      }
+
+      const excelRows = [
+        ["교과진로 수업네트워크 도서 수합 신청서"],
+        [`교사명: ${teacherName}`, `교과/네트워크명: ${subjectName}`, `연락처/비고: ${contact}`],
+        [],
+        ["연번", "도서명", "수량", "단가(원)", "소계(원)", "비고", "구매/정보 URL"]
+      ];
+
+      let totalAmt = 0;
+      let totalQty = 0;
+
+      booksData.forEach((item, index) => {
+        const qty = parseInt(item.quantity, 10) || 0;
+        const price = parseInt(item.price, 10) || 0;
+        const subtotal = qty * price;
+        totalQty += qty;
+        totalAmt += subtotal;
+
+        excelRows.push([index + 1, item.title || "", qty, price, subtotal, item.note || "", item.url || ""]);
+      });
+
+      excelRows.push(["합계", "", totalQty, "", totalAmt, "", ""]);
+
+      const worksheet = XLSX.utils.aoa_to_sheet(excelRows);
+      worksheet['!cols'] = [{ wch: 6 }, { wch: 35 }, { wch: 8 }, { wch: 14 }, { wch: 14 }, { wch: 25 }, { wch: 40 }];
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "도서신청서");
+      XLSX.writeFile(workbook, `도서수합신청_${teacherName}_${subjectName}.xlsx`);
+    }
+
+    // 엑셀 다운로드 (전체 수합 통합본)
+    function downloadExcelMerged() {
+      if (!globalSheetRawData || globalSheetRawData.length === 0) {
+        showToast("다운로드할 수합 내역이 없습니다.", "⚠️");
+        return;
+      }
+
+      const excelRows = [
+        ["2026학년도 교과진로 수업네트워크 전체 도서 수합 목록"],
+        [`생성일시: ${new Date().toLocaleString('ko-KR')}`],
+        [],
+        ["연번", "제출일시", "신청 교사명", "교과/네트워크명", "연락처", "도서명", "수량", "단가(원)", "소계(원)", "비고", "구매/정보 URL"]
+      ];
+
+      let grandTotalAmount = 0;
+      let grandTotalQty = 0;
+
+      globalSheetRawData.forEach((item, idx) => {
+        const q = parseInt(item.quantity, 10) || 0;
+        const p = parseInt(item.price, 10) || 0;
+        const subtotal = q * p;
+        grandTotalQty += q;
+        grandTotalAmount += subtotal;
+
+        excelRows.push([
+          idx + 1,
+          item.timestamp,
+          item.teacherName,
+          item.subjectName,
+          item.contact || "",
+          item.title,
+          q,
+          p,
+          subtotal,
+          item.note || "",
+          item.url || ""
+        ]);
+      });
+
+      excelRows.push(["전체 합계", "", "", "", "", "", grandTotalQty, "", grandTotalAmount, "", ""]);
+
+      const worksheet = XLSX.utils.aoa_to_sheet(excelRows);
+      worksheet['!cols'] = [{ wch: 6 }, { wch: 18 }, { wch: 12 }, { wch: 22 }, { wch: 14 }, { wch: 35 }, { wch: 8 }, { wch: 14 }, { wch: 14 }, { wch: 25 }, { wch: 40 }];
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "전체수합목록");
+      XLSX.writeFile(workbook, `수업네트워크_전체도서수합_통합.xlsx`);
+    }
+
     function showToast(message, icon = "✨") {
       const toast = document.getElementById('toast');
-      const msgElem = document.getElementById('toast-message');
-      const iconElem = document.getElementById('toast-icon');
-
-      msgElem.innerText = message;
-      iconElem.innerText = icon;
-
+      document.getElementById('toast-message').innerText = message;
+      document.getElementById('toast-icon').innerText = icon;
       toast.classList.remove('translate-y-20', 'opacity-0');
       toast.classList.add('translate-y-0', 'opacity-100');
-
       setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-20', 'opacity-0');
       }, 3000);
     }
 
-    // HELPER: Escape HTML strings to prevent XSS
     function escapeHtml(str) {
       if (!str) return '';
-      return str.toString()
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+      return str.toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
   </script>
 </body>
-</html><script async src="/.netlify/scripts/hud?variant=public" data-nf-variant="public" data-netlify-site-id="f048851d-8b47-4850-9035-76781c2d2672" data-app-host="app.netlify.com" data-account-tier="free"></script>
+</html>
