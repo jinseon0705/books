@@ -766,9 +766,11 @@
 
       showToast("개인 신청 서식 엑셀 파일이 다운로드되었습니다!", "📊");
     }
-      const GOOGLE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz24utPaSxFT2jsjD2m8wf3KdMCB-wdrvvqGtHP9m_P_2nDW9YeYFd9JOKLROchgU-K/exec";
 
-    // SUBMIT BOOK LIST (Save to LocalStorage)
+// 👇 여기에 본인의 구글 웹 앱 URL을 추가하세요.
+    const GOOGLE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxcPuPKzEAmlr1EtpcE4Axwy4uquDlnH1CjE1D-0vyA8hQQOJvShUFPQaOgk8fyDn7W/exec";
+
+  // SUBMIT BOOK LIST (구글 스프레드시트 및 LocalStorage 저장)
     function submitBookList() {
       const teacherName = document.getElementById('teacher-name').value.trim();
       const subjectName = document.getElementById('subject-name').value.trim();
@@ -783,32 +785,6 @@
         showToast("제출할 도서 목록이 없습니다.", "⚠️");
         return;
       }
-// 1. 구글 시트로 보낼 데이터 포장하기
-    const requestData = {
-      teacherName: teacherName,
-      subjectName: subjectName,
-      contact: contact,
-      books: JSON.stringify(booksData) // 배열 데이터를 문자열로 변환하여 전송
-    };
-
-    // 2. fetch 함수로 데이터 전송하기
-    fetch(GOOGLE_WEB_APP_URL, {
-      method: 'POST', // 구글 스크립트의 doPost 함수로 받도록 설정
-      mode: 'no-cors', // CORS 에러 방지용
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestData)
-    })
-    .then(() => {
-      showToast("구글 시트로 성공적으로 전송되었습니다!", "✅");
-      // 전송 성공 후 입력칸 비우기 등 필요한 후속 작업
-    })
-    .catch((error) => {
-      console.error('전송 실패:', error);
-      showToast("전송 중 오류가 발생했습니다.", "❌");
-    });
-  } // 함수 종료 괄호
 
       // Check rule warnings
       let warnings = [];
@@ -822,6 +798,7 @@
         if (!confirm(msg)) return;
       }
 
+      // 1. 브라우저 로컬 저장용
       const submission = {
         id: 'sub_' + Date.now(),
         submittedAt: new Date().toLocaleString('ko-KR'),
@@ -835,7 +812,31 @@
       saveSubmissionsToStorage();
       updateSummaryBadge();
 
-      showToast("성공적으로 수합 내역이 제출되었습니다!", "🎉");
+      // 2. 구글 앱스 스크립트로 보낼 데이터 (payload)
+      const payload = {
+        teacherName: teacherName,
+        subjectName: subjectName,
+        contact: contact,
+        books: booksData // 앱스 스크립트의 JSON.parse(data.books)와 짝을 맞추기 위함
+      };
+
+      // 3. 구글 웹 앱 URL로 데이터 전송 (CORS 에러 방지를 위해 text/plain 사용)
+      fetch(GOOGLE_WEB_APP_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("구글 시트 전송 성공:", data);
+        showToast("성공적으로 수합 내역이 제출되었습니다!", "🎉");
+      })
+      .catch(error => {
+        console.error("구글 시트 전송 에러:", error);
+        showToast("데이터 전송 중 오류가 발생했습니다.", "⚠️");
+      });
       
       // Automatically switch to summary tab to view result
       setTimeout(() => {
